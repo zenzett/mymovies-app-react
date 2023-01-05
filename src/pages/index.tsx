@@ -57,7 +57,7 @@ export default class Index extends Component<PropsType, StateType> {
   render() {
     return (
       <Layout>
-        <p className="mb-10 flex justify-center font-semibold text-3xl">
+        <p className="m-10 flex justify-center font-semibold text-xl sm:text-3xl">
           Now Playing
         </p>
         <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-5 gap-4 m-4">

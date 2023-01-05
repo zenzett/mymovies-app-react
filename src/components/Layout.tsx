@@ -10,7 +10,7 @@ interface LayoutProps {
 export default class Layout extends Component<LayoutProps> {
   render() {
     return (
-      <div className="w-full h-screen bg-zinc-900 flex flex-col overflow-auto">
+      <div className="w-full h-screen bg-zinc-800 flex flex-col overflow-auto">
         <Navbar />
         <div className="h-full overflow-auto">
           {this.props.children}
