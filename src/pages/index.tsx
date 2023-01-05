@@ -44,13 +44,12 @@ export default class Index extends Component<PropsType, StateType> {
       .then((data) => {
         const { results } = data.data;
         this.setState({ datas: results });
-        console.log(results); //must delete later
       })
       .catch((error) => {
         alert(error.toString());
       })
       .finally(() => {
-        // this.setState({ loading: false });
+        this.setState({ loading: false });
       });
   }
 
