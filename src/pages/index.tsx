@@ -70,6 +70,9 @@ export default class Index extends Component {
   render() {
     return (
       <Layout>
+        <p className="mb-10 flex justify-center font-semibold text-3xl">
+          Now Playing
+        </p>
         <div className="grid grid-cols-5 gap-4 m-4">
           {this.state.datas.map((data) => (
             <div className="text-black" key={data.id}>
