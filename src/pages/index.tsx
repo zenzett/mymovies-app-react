@@ -1,71 +1,58 @@
 import React, { Component } from "react";
-import Layout from "../components/Layout";
+import axios from "axios";
 
-export default class Index extends Component {
-  state = {
-    datas: [
-      {
-        id: 1,
-        title: "Avatar 1",
-        image:
-          "https://i.pinimg.com/736x/6d/aa/c2/6daac2a42ad7d987c6c102eb88fd94eb.jpg",
-      },
-      {
-        id: 2,
-        title: "Avatar 2",
-        image:
-          "https://i.pinimg.com/736x/6d/aa/c2/6daac2a42ad7d987c6c102eb88fd94eb.jpg",
-      },
-      {
-        id: 3,
-        title: "Avatar 3",
-        image:
-          "https://i.pinimg.com/736x/6d/aa/c2/6daac2a42ad7d987c6c102eb88fd94eb.jpg",
-      },
-      {
-        id: 4,
-        title: "Avatar 4",
-        image:
-          "https://i.pinimg.com/736x/6d/aa/c2/6daac2a42ad7d987c6c102eb88fd94eb.jpg",
-      },
-      {
-        id: 5,
-        title: "Avatar 5",
-        image:
-          "https://i.pinimg.com/736x/6d/aa/c2/6daac2a42ad7d987c6c102eb88fd94eb.jpg",
-      },
-      {
-        id: 6,
-        title: "Avatar 6",
-        image:
-          "https://i.pinimg.com/736x/6d/aa/c2/6daac2a42ad7d987c6c102eb88fd94eb.jpg",
-      },
-      {
-        id: 7,
-        title: "Avatar 7",
-        image:
-          "https://i.pinimg.com/736x/6d/aa/c2/6daac2a42ad7d987c6c102eb88fd94eb.jpg",
-      },
-      {
-        id: 8,
-        title: "Avatar 8",
-        image:
-          "https://i.pinimg.com/736x/6d/aa/c2/6daac2a42ad7d987c6c102eb88fd94eb.jpg",
-      },
-      {
-        id: 9,
-        title: "Avatar 9",
-        image:
-          "https://i.pinimg.com/736x/6d/aa/c2/6daac2a42ad7d987c6c102eb88fd94eb.jpg",
-      },
-      {
-        id: 10,
-        title: "Avatar 10",
-        image:
-          "https://i.pinimg.com/736x/6d/aa/c2/6daac2a42ad7d987c6c102eb88fd94eb.jpg",
-      },
-    ],
-  };
+import Layout from "../components/Layout";
+import Card from "../components/Card";
+import {
+  SkeletonLoading,
+  DiscLoading,
+  TextLoading,
+} from "../components/Loading";
+
+interface DatasType {
+  id: number;
+  title: string;
+  poster_path: string;
+  release_date: string;
+}
+
+interface PropsType {}
+
+interface StateType {
+  loading: boolean;
+  datas: DatasType[];
+}
+
+export default class Index extends Component<PropsType, StateType> {
+  constructor(props: PropsType) {
+    super(props);
+    this.state = {
+      datas: [],
+      loading: true,
+    };
+  }
+
+  componentDidMount() {
+    this.fetchData();
+  }
+
+  fetchData() {
+    axios
+      .get(
+        "https://api.themoviedb.org/3/movie/now_playing?api_key=9e8d52f5bf137b5b06381790d5c45d6a&language=en-US&page=1"
+      )
+      .then((data) => {
+        const { results } = data.data;
+        this.setState({ datas: results });
+        console.log(results); //must delete later
+      })
+      .catch((error) => {
+        alert(error.toString());
+      })
+      .finally(() => {
+        this.setState({ loading: false });
+      });
+  }
 
   render() {
     return (
@@ -73,13 +60,21 @@ export default class Index extends Component {
         <p className="mb-10 flex justify-center font-semibold text-3xl">
           Now Playing
         </p>
-        <div className="grid grid-cols-5 gap-4 m-4">
-          {this.state.datas.map((data) => (
-            <div className="text-black" key={data.id}>
-              <img src={data.image} alt="Image not found." />
-              <p>{data.title}</p>
+        <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-5 gap-4 m-4">
+          {this.state.loading ? (
+            <div className="grid">
+              <TextLoading />
             </div>
-          ))}
+          ) : (
+            this.state.datas.map((data) => (
+              <Card
+                key={data.id}
+                title={data.title}
+                image={data.poster_path}
+                release_date={data.release_date}
+              />
+            ))
+          )}
         </div>
       </Layout>
     );

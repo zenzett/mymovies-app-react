@@ -3,10 +3,10 @@ import React, { Component } from "react";
 export default class Navbar extends Component {
   render() {
     return (
-      <div className="navbar bg-base-100">
+      <div className="navbar glass bg-base-100">
         <div className="flex-1">
           <a
-            className="mx-4 normal-case font-extrabold italic text-xl"
+            className="sm:mx-4 normal-case font-[1000] italic text-2xl text-red-600"
             href="https://www.facebook.com/"
           >
             MOVIX
@@ -28,7 +28,7 @@ export default class Navbar extends Component {
             </label>
             <ul
               tabIndex={0}
-              className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52"
+              className="z-10 mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52"
             >
               <li>
                 <a className="justify-between">
