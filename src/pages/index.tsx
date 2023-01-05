@@ -50,32 +50,36 @@ export default class Index extends Component<PropsType, StateType> {
         alert(error.toString());
       })
       .finally(() => {
-        this.setState({ loading: false });
+        // this.setState({ loading: false });
       });
   }
 
   render() {
     return (
       <Layout>
-        <p className="m-10 flex justify-center font-semibold text-xl sm:text-3xl">
-          Now Playing
-        </p>
-        <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-5 gap-4 m-4">
-          {this.state.loading ? (
-            <div className="grid">
+        {this.state.loading ? (
+          <div className="flex justify-center items-center w-full">
+            {[0].map((data) => (
               <TextLoading />
+            ))}
+          </div>
+        ) : (
+          <div>
+            <p className="m-10 flex justify-center font-semibold text-xl sm:text-3xl">
+              Now Playing
+            </p>
+            <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-5 gap-4 m-4">
+              {this.state.datas.map((data) => (
+                <Card
+                  key={data.id}
+                  title={data.title}
+                  image={data.poster_path}
+                  release_date={data.release_date}
+                />
+              ))}
             </div>
-          ) : (
-            this.state.datas.map((data) => (
-              <Card
-                key={data.id}
-                title={data.title}
-                image={data.poster_path}
-                release_date={data.release_date}
-              />
-            ))
-          )}
-        </div>
+          </div>
+        )}
       </Layout>
     );
   }

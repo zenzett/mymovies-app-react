@@ -25,8 +25,8 @@ export class SkeletonLoading extends Component {
 export class DiscLoading extends Component {
   render() {
     return (
-      <div className="w-full h-screen">
-        <Lottie className="w-24" animationData={DiscAnimation} loop={true} />
+      <div className="h-screen flex justify-center w-16 sm:w-28">
+        <Lottie animationData={DiscAnimation} loop={true} />
       </div>
     );
   }
@@ -35,7 +35,7 @@ export class DiscLoading extends Component {
 export class TextLoading extends Component {
   render() {
     return (
-      <div className="w-full h-screen">
+      <div className="h-screen flex justify-center w-40 sm:w-80">
         <Lottie animationData={TextAnimation} loop={true} />
       </div>
     );
