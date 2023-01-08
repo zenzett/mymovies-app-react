@@ -7,7 +7,7 @@ type LanguageType = {
   english_name?: string;
 };
 
-interface VideosType {
+export interface VideosType {
   id?: string;
   key?: string;
   name?: string;
