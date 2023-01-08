@@ -1,17 +1,15 @@
-import React, { Component } from "react";
+import { Component, ButtonHTMLAttributes } from "react";
 
-interface ButtonProps {
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   label: string;
-  onClick: () => void;
 }
 
-export class Button extends Component<ButtonProps> {
+export class FavoriteButton extends Component<ButtonProps> {
   render() {
     return (
       <button
-        onClick={() => {
-          this.props.onClick;
-        }}
+        className="btn w-full tracking-wider bg-zinc-800 text-[0.6rem] sm:text-sm"
+        {...this.props}
       >
         {this.props.label}
       </button>
@@ -19,4 +17,15 @@ export class Button extends Component<ButtonProps> {
   }
 }
 
-export default Button;
+export class PlayButton extends Component<ButtonProps> {
+  render() {
+    return (
+      <button
+        className="btn w-full tracking-widest bg-zinc-800 text-sm sm:text-base"
+        {...this.props}
+      >
+        {this.props.label}
+      </button>
+    );
+  }
+}
