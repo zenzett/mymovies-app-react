@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import Lottie from "lottie-react";
 
-import DiscAnimation from "../assets/disc-animation-black.json";
-import TextAnimation from "../assets/text-animation-black.json";
+import DiscAnimation from "../assets/disc-animation-white.json";
+import TextAnimation from "../assets/text-animation-white.json";
 
 export class SkeletonLoading extends Component {
   render() {
