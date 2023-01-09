@@ -19,7 +19,7 @@ const Favorite = () => {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  });
 
   function fetchData() {
     const getFavorite = localStorage.getItem("FavMovie");
