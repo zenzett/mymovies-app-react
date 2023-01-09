@@ -1,9 +1,8 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { Component } from "react";
 
-import Homepage from "../pages";
-import Detail from "../pages/Detail";
 import Favorite from "../pages/Favorite";
+import Detail from "../pages/Detail";
+import Homepage from "../pages";
 
 const router = createBrowserRouter([
   {
@@ -20,10 +19,8 @@ const router = createBrowserRouter([
   },
 ]);
 
-class App extends Component {
-  render() {
-    return <RouterProvider router={router} />;
-  }
-}
+const App = () => {
+  return <RouterProvider router={router} />;
+};
 
 export default App;
