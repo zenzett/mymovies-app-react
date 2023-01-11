@@ -1,7 +1,7 @@
 import Lottie from "lottie-react";
 
-import DiscAnimation from "../assets/disc-animation-white.json";
-import TextAnimation from "../assets/text-animation-white.json";
+import DiscAnimation from "assets/disc-animation-white.json";
+import TextAnimation from "assets/text-animation-white.json";
 
 export const SkeletonLoading = () => {
   return (
