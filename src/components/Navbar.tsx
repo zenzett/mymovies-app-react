@@ -45,7 +45,7 @@ const Navbar = () => {
           </ul>
         </div>
         <Link
-          to="/home"
+          to="/"
           className="justify-center normal-case font-[1000] italic text-2xl text-red-600 hidden md:flex md:ml-5"
         >
           MOVIX
@@ -53,7 +53,7 @@ const Navbar = () => {
       </div>
       <div className="navbar-center">
         <Link
-          to="/home"
+          to="/"
           className="justify-center normal-case font-[1000] italic text-2xl text-red-600 md:hidden"
         >
           MOVIX

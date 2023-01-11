@@ -11,7 +11,7 @@ import { ThemeContext } from "../utils/context";
 
 const router = createBrowserRouter([
   {
-    path: "/home",
+    path: "/",
     element: <Homepage />,
   },
   {
