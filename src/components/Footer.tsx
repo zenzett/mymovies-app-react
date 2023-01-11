@@ -8,7 +8,7 @@ import {
 
 const Footer = () => {
   return (
-    <footer className="footer footer-center p-10 bg-black text-base-content rounded">
+    <footer className="footer footer-center p-10 rounded bg-zinc-300 text-zinc-900 dark:bg-zinc-900 dark:text-zinc-300">
       <div>
         <div className="grid grid-flow-col gap-4">
           <a href="https://www.discord.com/">
