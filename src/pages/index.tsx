@@ -1,14 +1,21 @@
+import { FaRegHeart, FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import moment from "moment";
 import axios from "axios";
 
-import { TextLoading } from "../components/Loading";
-import Carousel from "../components/Carousel";
-import Layout from "../components/Layout";
-import Card from "../components/Card";
-import { MovieType } from "../utils/types/movie";
+import { TextLoading } from "components/Loading";
+import Carousel from "components/Carousel";
+import Layout from "components/Layout";
+import Card from "components/Card";
+
+import { setFavorites } from "utils/redux/reducers/reducer";
+import { useTitle } from "utils/hooks/customHooks";
+import { MovieType } from "utils/types/movie";
 
 const Index = () => {
+  const dispatch = useDispatch();
+  useTitle("Movix | Now Playing");
   const [datas, setDatas] = useState<MovieType[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [totalPage, setTotalPage] = useState<number>(1);
@@ -71,6 +78,7 @@ const Index = () => {
       let parseFav: MovieType[] = JSON.parse(checkExist);
       parseFav.push(data);
       localStorage.setItem("FavMovie", JSON.stringify(parseFav));
+      dispatch(setFavorites(parseFav));
     } else {
       localStorage.setItem("FavMovie", JSON.stringify([data]));
       alert("Favorited");
@@ -102,10 +110,10 @@ const Index = () => {
         </div>
       ) : (
         <div>
-          <p className="m-10 flex justify-center font-semibold text-xl sm:text-3xl">
+          <p className="m-10 flex justify-center font-semibold text-xl text-zinc-900 dark:text-zinc-300 sm:text-3xl">
             Now Playing
           </p>
-          <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-5 gap-4 m-4">
+          <div className="grid grid-cols-3 gap-4 m-4 md:grid-cols-4 lg:grid-cols-5">
             {datas.map((data) => (
               <Card
                 key={data.id}
@@ -113,28 +121,28 @@ const Index = () => {
                 title={data.title}
                 image={data.poster_path}
                 release_date={moment(data.release_date).format("YYYY")}
-                labelButton="Add to Favorite"
+                labelButton={<FaRegHeart />}
                 onClickFav={() => handleFavorite(data)}
               />
             ))}
           </div>
           <div className="btn-group flex justify-center m-10">
             <button
-              className="btn  bg-zinc-800"
+              className="px-2 btn border-transparent w-fit text-[0.75rem] bg-zinc-300 text-zinc-900 hover:bg-zinc-400 hover:border-transparent dark:bg-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-700 md:text-base disabled:dark:text-zinc-800"
               onClick={() => prevPage()}
               disabled={page === 1}
             >
-              «
+              <FaChevronLeft />
             </button>
-            <button className="btn  bg-zinc-800 tracking-wider text-[0.6rem] sm:text-sm">
+            <button className="px-3 border-transparent w-fit text-[0.75rem] bg-zinc-300 text-zinc-900 hover:cursor-default hover:border-transparent dark:bg-zinc-900 dark:text-zinc-300 md:text-base">
               {page}
             </button>
             <button
-              className="btn  bg-zinc-800"
+              className="px-2 btn border-transparent w-fit text-[0.75rem] bg-zinc-300 text-zinc-900 hover:bg-zinc-400 hover:border-transparent dark:bg-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-700 md:text-base disabled:dark:text-zinc-800"
               onClick={() => nextPage()}
               disabled={page === totalPage}
             >
-              »
+              <FaChevronRight />
             </button>
           </div>
         </div>
