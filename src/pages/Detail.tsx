@@ -3,11 +3,13 @@ import { useState, useEffect } from "react";
 import arrayShuffle from "array-shuffle";
 import moment from "moment";
 
-import { PlayButton, FavoriteButton } from "../components/Button";
-import { TextLoading } from "../components/Loading";
-import Carousel from "../components/Carousel";
-import Layout from "../components/Layout";
-import { MovieType, VideosType } from "../utils/types/movie";
+import { TextLoading } from "components/Loading";
+import { Button } from "components/Button";
+import Carousel from "components/Carousel";
+import Layout from "components/Layout";
+
+import { MovieType, VideosType } from "utils/types/movie";
+import { useTitle } from "utils/hooks/customHooks";
 
 const Detail = () => {
   const { id_movie } = useParams();
@@ -15,6 +17,7 @@ const Detail = () => {
   const [videos, setVideos] = useState<VideosType[]>([]);
   const [data, setData] = useState<MovieType>({});
   const [loading, setLoading] = useState<boolean>(true);
+  useTitle(`Movix | ${data.title}`);
 
   useEffect(() => {
     fetchData();
@@ -54,7 +57,7 @@ const Detail = () => {
               backgroundImage: `linear-gradient(rgba(0, 0,0,0.3), rgba(0,0,0,0.3)), url(https://image.tmdb.org/t/p/original${data.backdrop_path})`,
             }}
           >
-            <div className="p-5 flex flex-col backdrop-blur-lg bg-black/25 card lg:p-10 lg:flex-row">
+            <div className="p-5 flex flex-col card backdrop-blur-md bg-zinc-300/50 text-zinc-900 dark:bg-zinc-900/50 dark:text-zinc-300 lg:p-10 lg:flex-row">
               <img
                 className="object-cover object-center card"
                 src={`https://image.tmdb.org/t/p/w500${data.poster_path}`}
@@ -86,7 +89,7 @@ const Detail = () => {
                 </p>
                 <p className="text-sm pt-5 sm:text-lg">{data.overview}</p>
                 <div className="card-actions flex justify-center mt-10">
-                  <PlayButton label="PLAY" />
+                  <Button label="WATCH" />
                 </div>
               </div>
             </div>
