@@ -1,24 +1,13 @@
-import { FC, ButtonHTMLAttributes } from "react";
+import { FC, ButtonHTMLAttributes, ReactNode } from "react";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  label?: string;
+  label?: string | ReactNode;
 }
 
-export const FavoriteButton: FC<ButtonProps> = ({ label, ...props }) => {
+export const Button: FC<ButtonProps> = ({ label, ...props }) => {
   return (
     <button
-      className="btn w-full tracking-wider bg-zinc-800 text-[0.6rem] sm:text-sm"
-      {...props}
-    >
-      {label}
-    </button>
-  );
-};
-
-export const PlayButton: FC<ButtonProps> = ({ label, ...props }) => {
-  return (
-    <button
-      className="btn w-full tracking-widest bg-zinc-800 text-sm sm:text-base"
+      className="btn border-transparent w-fit tracking-wider text-[0.75rem] bg-zinc-300 text-zinc-900 hover:bg-zinc-400 hover:border-transparent dark:bg-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-700 md:text-base"
       {...props}
     >
       {label}
